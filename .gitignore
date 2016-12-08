@@ -1,11 +1,11 @@
 #files
 *.class
-*.project
-*.classpath
+org.eclipse*
 
 #folder
 \target
 \.settings
+apache-jmeter-3.0
 
 # BlueJ files
 *.ctxt
