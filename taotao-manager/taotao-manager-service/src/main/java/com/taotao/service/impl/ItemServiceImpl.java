@@ -13,10 +13,12 @@ import com.taotao.common.utils.IDUtils;
 import com.taotao.common.utils.TaotaoResult;
 import com.taotao.mapper.TbItemDescMapper;
 import com.taotao.mapper.TbItemMapper;
+import com.taotao.mapper.TbItemParamItemMapper;
 import com.taotao.pojo.TbItem;
 import com.taotao.pojo.TbItemDesc;
 import com.taotao.pojo.TbItemExample;
-import com.taotao.pojo.TbItemExample.Criteria;
+import com.taotao.pojo.TbItemParam;
+import com.taotao.pojo.TbItemParamItem;
 import com.taotao.service.ItemService;
 
 /**
@@ -33,9 +35,12 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private TbItemMapper itemMapper;
-	
+
 	@Autowired
 	private TbItemDescMapper itemDescMapper;
+	
+	@Autowired
+	private TbItemParamItemMapper itemParamMapper;
 
 	@Override
 	public EasyUIResult getItemList(Integer page, Integer rows) {
@@ -51,7 +56,7 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public TaotaoResult createItem(TbItem item, String desc) {
+	public TaotaoResult createItem(TbItem item, String desc, String itemParam) throws Exception {
 		Date date = new Date();
 		Long id = IDUtils.genItemId();
 		item.setId(id);
@@ -61,6 +66,19 @@ public class ItemServiceImpl implements ItemService {
 		item.setUpdated(date);
 		itemMapper.insert(item);
 		// 添加商品描述
+		TaotaoResult result = insertItemDesc(id, desc);
+		if(result.getStatus() != 200){
+			throw new Exception();
+		}
+		result = insertItemParamItem(id, itemParam);
+		if(result.getStatus() != 200){
+			throw new Exception();
+		}
+		return result;
+	}
+
+	private TaotaoResult insertItemDesc(Long id, String desc) {
+		Date date = new Date();
 		// 创建TbItemDesc对象
 		TbItemDesc itemDesc = new TbItemDesc();
 		// 获得一个商品id
@@ -70,7 +88,18 @@ public class ItemServiceImpl implements ItemService {
 		itemDesc.setUpdated(date);
 		// 插入数据
 		itemDescMapper.insert(itemDesc);
+		return TaotaoResult.ok();
+	}
 
+	private TaotaoResult insertItemParamItem(Long itemId, String itemParam) {
+		// 创建一个pojo
+		TbItemParamItem itemParamItem = new TbItemParamItem();
+		itemParamItem.setItemId(itemId);
+		itemParamItem.setParamData(itemParam);
+		itemParamItem.setCreated(new Date());
+		itemParamItem.setUpdated(new Date());
+		// 向表中插入数据
+		itemParamMapper.insert(itemParamItem);
 		return TaotaoResult.ok();
 	}
 

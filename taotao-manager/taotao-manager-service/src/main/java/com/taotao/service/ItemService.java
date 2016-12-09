@@ -8,5 +8,5 @@ public interface ItemService {
 
 	EasyUIResult getItemList(Integer page, Integer rows);
 	
-	TaotaoResult createItem(TbItem item, String desc);
+	TaotaoResult createItem(TbItem item, String desc, String itemParam) throws Exception;
 }

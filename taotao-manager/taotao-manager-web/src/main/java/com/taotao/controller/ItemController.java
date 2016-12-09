@@ -3,6 +3,7 @@ package com.taotao.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,11 +34,11 @@ public class ItemController {
 		return itemService.getItemList(page, rows);
 	}
 
-	@RequestMapping("/save")
+	@RequestMapping(value="/save", method=RequestMethod.POST)
 	@ResponseBody
-	public TaotaoResult saveItem(TbItem item, String desc) {
+	public TaotaoResult saveItem(TbItem item, String desc, String itemParams) throws Exception {
 		// 添加商品信息
-		itemService.createItem(item, desc);
+		itemService.createItem(item, desc, itemParams);
 		return TaotaoResult.ok();
 	}
 
