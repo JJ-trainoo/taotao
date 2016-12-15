@@ -1,5 +1,7 @@
 package com.taotao.service.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +15,6 @@ import com.taotao.common.utils.TaotaoResult;
 import com.taotao.mapper.TbContentMapper;
 import com.taotao.pojo.TbContent;
 import com.taotao.pojo.TbContentExample;
-import com.taotao.pojo.TbItem;
 import com.taotao.pojo.TbContentExample.Criteria;
 import com.taotao.service.ContentService;
 
@@ -45,6 +46,20 @@ public class ContentServiceimpl implements ContentService {
 		content.setUpdated(new Date());
 		contentMapper.insert(content);
 
+		return TaotaoResult.ok();
+	}
+
+	@Override
+	public TaotaoResult deleteContentByCatId(String ids) {
+		String[] id = ids.split(",");
+		List<Long> idList = new ArrayList<Long>();
+		for(int i = 0; i < id.length; i++){
+			idList.add(Long.valueOf(id[i]));
+		}
+		TbContentExample example = new TbContentExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andIdIn(idList);
+		contentMapper.deleteByExample(example);
 		return TaotaoResult.ok();
 	}
 

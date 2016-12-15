@@ -1,5 +1,6 @@
 package com.taotao.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,4 +29,11 @@ public class ContentController {
 	public TaotaoResult saveContent(TbContent content){
 		return contentService.insertContent(content);
 	}
+	
+	@RequestMapping("/delete")
+	@ResponseBody
+	public TaotaoResult deleteContent(String ids){
+		return contentService.deleteContentByCatId(ids);
+	}
+	
 }
