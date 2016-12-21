@@ -30,8 +30,10 @@ public class ItemCatServiceImpl implements ItemCatService {
 	@Value("INDEX_ITEM_REDIS_KEY")
 	private String INDEX_ITEM_REDIS_KEY;
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public CatResult getItemCatList() {
+		//从缓存中获取
 		try {
 			String result = jedisClient.hGet(INDEX_ITEM_REDIS_KEY, "all");
 			if (!StringUtils.isBlank(result)) {
@@ -43,10 +45,9 @@ public class ItemCatServiceImpl implements ItemCatService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		CatResult catResult = new CatResult();
 		catResult.setData(getCatList(0));
-		
+		//写入缓存
 		try {
 			String json = JsonUtils.objectToJson(catResult.getData());
 			jedisClient.hSet(INDEX_ITEM_REDIS_KEY, "all", json);

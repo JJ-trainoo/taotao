@@ -64,7 +64,24 @@ public class JedisClientSingle implements JedisClient{
 	public long ttl(String key) {
 		Jedis jedis = jedisPool.getResource();
 		Long ttl = jedis.ttl(key);
+		jedis.close();
 		return ttl;
+	}
+
+	@Override
+	public long del(String key) {
+		Jedis jedis = jedisPool.getResource();
+		Long result = jedis.del(key);
+		jedis.close();
+		return result;
+	}
+
+	@Override
+	public long hdel(String hkey, String key) {
+		Jedis jedis = jedisPool.getResource();
+		Long result = jedis.hdel(hkey, key);
+		jedis.close();
+		return result;
 	}
 
 }

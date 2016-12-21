@@ -9,4 +9,7 @@ public interface JedisClient {
 	long incr(String key);
 	long expire(String key, int seconds);
 	long ttl(String key);
+	
+	long del(String key);
+	long hdel(String hkey, String key);
 }
