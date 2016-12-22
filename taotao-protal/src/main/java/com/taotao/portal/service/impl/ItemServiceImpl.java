@@ -1,4 +1,4 @@
-package com.taotao.portal.service;
+package com.taotao.portal.service.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -13,6 +13,7 @@ import com.taotao.common.utils.TaotaoResult;
 import com.taotao.pojo.TbItemDesc;
 import com.taotao.pojo.TbItemParamItem;
 import com.taotao.portal.pojo.ItemInfo;
+import com.taotao.portal.service.ItemService;
 
 @Service
 public class ItemServiceImpl implements ItemService {
