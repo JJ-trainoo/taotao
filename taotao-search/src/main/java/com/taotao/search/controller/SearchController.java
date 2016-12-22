@@ -1,5 +1,7 @@
 package com.taotao.search.controller;
 
+import java.io.UnsupportedEncodingException;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,11 @@ public class SearchController {
 		//查询条件不能为空
 		if (StringUtils.isBlank(queryString)) {
 			return TaotaoResult.build(400, "查询条件不能为空");
+		}
+		try {
+			queryString = new String(queryString.getBytes("iso8859-1"), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
 		}
 		SearchResult searchResult = null;
 		try {

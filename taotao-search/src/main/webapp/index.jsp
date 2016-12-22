@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>淘淘rest服务系统</title>
+<title>淘淘solr搜索系统</title>
 </head>
 <body>
 	<div style="text-align: center;margin-top:80px">
-		<font color="#AAA" size="16px">rest服务系统正常运行中<span id="spanId"></span></font>
+		<font color="#AAA" size="16px">solr搜索系统正常运行中<span id="spanId"></span></font>
 	</div>
 </body>
 <script>

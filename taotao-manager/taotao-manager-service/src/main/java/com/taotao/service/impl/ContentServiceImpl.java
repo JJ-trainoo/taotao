@@ -72,10 +72,16 @@ public class ContentServiceImpl implements ContentService {
 		TbContentExample example = new TbContentExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andIdIn(idList);
+		//获取父节点的id
+		String cid = "";
+		List<TbContent> list = contentMapper.selectByExample(example);
+		if (list != null && list.size()>0) 
+			cid = list.get(0).getCategoryId() + "";
+		//删除内容
 		contentMapper.deleteByExample(example);
 		// 添加缓存同步逻辑
 		try {
-			HttpClientUtil.doGet(REST_BASE_URL + REST_CONTENT_SYNC_URL + ids);
+			HttpClientUtil.doGet(REST_BASE_URL + REST_CONTENT_SYNC_URL + cid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

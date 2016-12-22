@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.taotao.common.utils.TaotaoResult;
 import com.taotao.rest.service.RedisService;
@@ -22,6 +23,7 @@ public class RedisController {
 	 * @return
 	 */
 	@RequestMapping("/content/{contentCids}")
+	@ResponseBody
 	public TaotaoResult contentCacheSync(@PathVariable String contentCids) {
 		TaotaoResult result = redisService.syncContent(contentCids);
 		return result;
