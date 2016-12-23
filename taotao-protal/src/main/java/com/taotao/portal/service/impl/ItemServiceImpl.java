@@ -68,7 +68,7 @@ public class ItemServiceImpl implements ItemService {
 		try {
 			String json = HttpClientUtil.doGet(REST_BASE_URL + ITEM_PARAM_URL + itemId);
 			// 把json转换成java对象
-			TaotaoResult taotaoResult = TaotaoResult.formatToList(json, TbItemParamItem.class);
+			TaotaoResult taotaoResult = TaotaoResult.formatToPojo(json, TbItemParamItem.class);
 			if (taotaoResult.getStatus() == 200) {
 				TbItemParamItem itemParamItem = (TbItemParamItem) taotaoResult.getData();
 				String paramData = itemParamItem.getParamData();
