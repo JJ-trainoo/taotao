@@ -1,4 +1,4 @@
-package com.taotao.http;
+/*package com.taotao.http;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,3 +102,4 @@ public class TestHttp {
 
 
 }
+*/
