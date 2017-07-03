@@ -17,7 +17,6 @@ import com.taotao.mapper.TbItemParamItemMapper;
 import com.taotao.pojo.TbItem;
 import com.taotao.pojo.TbItemDesc;
 import com.taotao.pojo.TbItemExample;
-import com.taotao.pojo.TbItemParam;
 import com.taotao.pojo.TbItemParamItem;
 import com.taotao.service.ItemService;
 

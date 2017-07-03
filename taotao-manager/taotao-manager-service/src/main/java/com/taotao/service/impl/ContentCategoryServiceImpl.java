@@ -29,7 +29,7 @@ public class ContentCategoryServiceImpl implements ContentCategoryService {
 		criteria.andParentIdEqualTo(parentId);
 		// 执行查询
 		List<TbContentCategory> list = contentCategoryMapper.selectByExample(example);
-		List<EasyUITreeNode> resultList = new ArrayList();
+		List<EasyUITreeNode> resultList = new ArrayList<EasyUITreeNode>();
 		for (TbContentCategory tbContentCategory : list) {
 			// 创建一个节点
 			EasyUITreeNode node = new EasyUITreeNode();
