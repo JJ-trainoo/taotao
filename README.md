@@ -3,4 +3,3 @@
 
 ### 系统架构如下：
 ![系统架构图](https://git.oschina.net/uploads/images/2017/0705/220346_376f0044_1332208.png "系统架构图")
->>>>>>> a7fc5458d03ca7f19be49a1e9a472af6338c7b2f
