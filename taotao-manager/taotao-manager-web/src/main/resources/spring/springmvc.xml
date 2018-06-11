@@ -9,8 +9,7 @@
 
 	<context:component-scan base-package="com.taotao.controller" />
 	<mvc:annotation-driven />
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
@@ -22,9 +21,22 @@
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 设定默认编码 -->
-		<property name="defaultEncoding" value="UTF-8"></property>
+		<property name="defaultEncoding" value="UTF-8"/>
 		<!-- 设定文件上传的最大值5MB，5*1024*1024 -->
-		<property name="maxUploadSize" value="5242880"></property>
+		<property name="maxUploadSize" value="5242880"/>
 	</bean>
-	
+
+	<mvc:interceptors>
+		<!-- 多个拦截器，顺序执行 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/**/favicon.ico"/>
+			<mvc:exclude-mapping path="/css/**/*"/>
+			<mvc:exclude-mapping path="/js/**/*"/>
+			<mvc:exclude-mapping path="/**/login"/>
+			<mvc:exclude-mapping path="/**/login/sign_in"/>
+			<bean class="com.taotao.interceptor.LoginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 </beans>
