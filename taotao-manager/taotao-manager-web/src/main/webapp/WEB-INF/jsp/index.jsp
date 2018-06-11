@@ -20,6 +20,13 @@
 <body class="easyui-layout">
     <div data-options="region:'west',title:'菜单',split:true" style="width:180px;">
     	<ul id="menu" class="easyui-tree" style="margin-top: 10px;margin-left: 5px;">
+    		<li>
+         		<span>网站内容管理</span>
+         		<ul>
+	         		<li data-options="attributes:{'url':'content-category'}">内容分类管理</li>
+	         		<li data-options="attributes:{'url':'content'}">内容管理</li>
+	         	</ul>
+         	</li>
          	<li>
          		<span>商品管理</span>
          		<ul>
@@ -29,10 +36,11 @@
 	         	</ul>
          	</li>
          	<li>
-         		<span>网站内容管理</span>
+         		<span>订单管理</span>
          		<ul>
-	         		<li data-options="attributes:{'url':'content-category'}">内容分类管理</li>
-	         		<li data-options="attributes:{'url':'content'}">内容管理</li>
+	         		<li data-options="attributes:{'url':'order-list'}">查询订单</li>
+	         		<li data-options="attributes:{'url':'order-ship-list'}">查询物流</li>
+	         		<li data-options="attributes:{'url':'order-item-list'}">查询商品</li>
 	         	</ul>
          	</li>
          </ul>
