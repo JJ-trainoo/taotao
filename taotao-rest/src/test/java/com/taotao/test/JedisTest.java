@@ -1,15 +1,14 @@
 package com.taotao.test;
 
-import java.util.HashSet;
-
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
+
+import java.util.HashSet;
 
 public class JedisTest {
 
